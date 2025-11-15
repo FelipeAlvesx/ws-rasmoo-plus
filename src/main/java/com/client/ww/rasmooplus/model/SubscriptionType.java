@@ -1,5 +1,6 @@
 package com.client.ww.rasmooplus.model;
 
+import com.client.ww.rasmooplus.dtos.SubscriptionTypeDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,7 +20,7 @@ public class SubscriptionType implements Serializable {
 
     @Id
     @Column(name = "subscriptions_type_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -29,7 +30,15 @@ public class SubscriptionType implements Serializable {
 
     private BigDecimal price;
 
-    @Column(name = "product_key")
+    @Column(name = "product_key", unique = true)
     private String productKey;
+
+
+    public SubscriptionType(SubscriptionTypeDto subscriptionTypeDto){
+        this(subscriptionTypeDto.id() ,subscriptionTypeDto.name(),
+                subscriptionTypeDto.accessMonth(), subscriptionTypeDto.price(),
+                subscriptionTypeDto.productKey());
+    }
+
 
 }
