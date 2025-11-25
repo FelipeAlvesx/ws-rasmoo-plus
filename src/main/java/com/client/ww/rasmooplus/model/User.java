@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.cglib.core.Local;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -20,7 +19,7 @@ public class User implements Serializable {
 
     @Id
     @Column(name = "users_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -35,7 +34,7 @@ public class User implements Serializable {
     private LocalDate dtSubscription = LocalDate.now();
 
     @Column(name = "dt_expiration")
-    private LocalDate dtExpiration;
+    private LocalDate dtExpiration = LocalDate.now();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_type_id")
@@ -44,5 +43,6 @@ public class User implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "subscriptions_type_id")
     private SubscriptionType subscriptionType;
+
 
 }

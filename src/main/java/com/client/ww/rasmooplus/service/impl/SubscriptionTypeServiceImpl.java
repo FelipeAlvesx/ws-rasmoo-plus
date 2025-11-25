@@ -1,6 +1,7 @@
 package com.client.ww.rasmooplus.service.impl;
 
 import com.client.ww.rasmooplus.dtos.SubscriptionTypeDto;
+import com.client.ww.rasmooplus.dtos.SubscriptionTypeUpdateDto;
 import com.client.ww.rasmooplus.model.SubscriptionType;
 import com.client.ww.rasmooplus.repository.SubscriptionTypeRespository;
 import com.client.ww.rasmooplus.service.SubscriptionTypeService;
@@ -39,7 +40,7 @@ public class SubscriptionTypeServiceImpl implements SubscriptionTypeService {
     }
 
     @Override
-    public SubscriptionType update(Long id, SubscriptionTypeDto subscriptionType) {
+    public SubscriptionType update(Long id, SubscriptionTypeUpdateDto subscriptionType) {
 
         getSubscriptionType(id);
 
@@ -52,7 +53,6 @@ public class SubscriptionTypeServiceImpl implements SubscriptionTypeService {
 
                 .build());
 
-
     }
 
     @Override
@@ -64,7 +64,7 @@ public class SubscriptionTypeServiceImpl implements SubscriptionTypeService {
     }
 
 
-    private SubscriptionType getSubscriptionType( Long id){
+    private SubscriptionType getSubscriptionType(Long id){
 
         return subscriptionTypeRespository.findById(id)
                 .orElseThrow(() -> new RuntimeException("SubscriptionType not found"));
