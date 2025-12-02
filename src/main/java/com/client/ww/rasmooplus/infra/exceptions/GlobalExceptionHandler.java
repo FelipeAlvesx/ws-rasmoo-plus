@@ -25,7 +25,6 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(error.stream().map(DataValidationException::new).toList());
     }
 
-
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<ErrorResponseDto> handleDataIntegrityViolationException(DataIntegrityViolationException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponseDto(ex));
